@@ -2019,7 +2019,7 @@ function Header({
       className="sticky top-0 z-40 shadow-md"
       style={{ background: '#1C0D04' }}
     >
-      <div className="max-w-7xl mx-auto px-4 h-16 flex items-center gap-4">
+      <div className="max-w-7xl mx-auto px-3 sm:px-4 h-16 flex items-center gap-2 sm:gap-4">
         {/* Logo */}
         <button
           onClick={() => {
@@ -2045,7 +2045,7 @@ function Header({
             <button
               key={t}
               onClick={onOpenOrderModal}
-              className="px-3 py-1 rounded-full text-xs font-semibold capitalize transition-all"
+              className="px-2 sm:px-3 py-1 rounded-full text-xs font-semibold capitalize transition-all whitespace-nowrap"
               style={
                 orderType === t
                   ? { background: '#C9A84C', color: '#1C0D04' }
@@ -2098,7 +2098,7 @@ function Header({
         {/* Search */}
         <button
           onClick={onSearchFocus}
-          className="flex items-center justify-center w-9 h-9 rounded-full hover:bg-white/10 transition-colors flex-shrink-0"
+          className="flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-full hover:bg-white/10 transition-colors flex-shrink-0"
           style={{ color: '#C9A84C' }}
           aria-label="Search"
         >
@@ -2120,7 +2120,7 @@ function Header({
         {/* Cart */}
         <button
           onClick={onOpenCart}
-          className="relative flex items-center justify-center w-9 h-9 rounded-full hover:bg-white/10 transition-colors flex-shrink-0"
+          className="relative flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-full hover:bg-white/10 transition-colors flex-shrink-0"
           style={{ color: '#C9A84C' }}
           aria-label="Cart"
         >
@@ -2150,7 +2150,7 @@ function Header({
         {/* Mobile menu toggle */}
         <button
           onClick={() => setMenuOpen((o) => !o)}
-          className="md:hidden flex items-center justify-center w-9 h-9 rounded-full hover:bg-white/10 transition-colors flex-shrink-0"
+          className="md:hidden flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-full hover:bg-white/10 transition-colors flex-shrink-0"
           style={{ color: '#C9A84C' }}
           aria-label="Menu"
         >
