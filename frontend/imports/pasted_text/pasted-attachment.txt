@@ -1,0 +1,1088 @@
+# 4B FOODS — COMPLETE RESTAURANT ORDERING WEBSITE
+
+Build a complete, premium and fully responsive restaurant ordering website for:
+
+**Brand:** 4B Foods
+**Branch:** 71-A Jail Road, Lahore, Pakistan
+**Phone:** 0319 8429752
+**Home Delivery:** Available
+**Cuisine:** Turkish Doner, Shawarma, Wraps, Rice Bowls, Hummus, Falafel & Desserts
+
+Use the uploaded **4B Foods logo, restaurant photographs, food photographs and menu** as the source for branding, categories, product names and prices.
+
+---
+
+# CRITICAL UI RULE
+
+The **entire public website UI, layout, structure, placement, spacing and customer ordering flow must remain the same as the supplied Munch & Crunch reference website/prompt.**
+
+Do NOT redesign the website into another style.
+
+Do NOT convert it into a Jalal Sons-style interface.
+
+Do NOT create a generic restaurant landing page.
+
+Preserve the same UI system including:
+
+* thin announcement bar
+* main navbar structure
+* Delivery / Pick-up selector
+* Home / Menu / Featured / Contact navigation
+* location placement
+* search icon
+* cart icon with quantity badge
+* opening order-type/location modal
+* large promotional hero carousel
+* same hero proportions and text placement
+* carousel arrows
+* pagination dots
+* “What Are You Craving Today?” section
+* centered product search
+* horizontal sticky category pills
+* automatic active category state while scrolling
+* category-by-category menu sections
+* same product-card proportions
+* product customization modal
+* cart drawer
+* checkout structure
+* floating cart summary
+* contact section
+* footer hierarchy
+* mobile responsiveness
+
+Only replace the **Munch & Crunch brand/content/menu/contact details** with **4B Foods information**.
+
+---
+
+# TECHNOLOGY
+
+## Frontend
+
+Use:
+
+* React
+* TypeScript
+* Tailwind CSS
+* reusable components
+* responsive design
+
+## Backend
+
+Create a real **Node.js server**.
+
+Use:
+
+**Node.js + Express.js**
+
+for the backend API.
+
+Use:
+
+**MongoDB**
+
+for persistent database storage.
+
+Use Mongoose or another clean MongoDB ODM if appropriate.
+
+The application must have a real frontend/backend architecture.
+
+Suggested structure:
+
+### Frontend
+
+React + TypeScript + Tailwind
+
+### Backend
+
+Node.js + Express.js
+
+### Database
+
+MongoDB
+
+---
+
+# IMPORTANT BACKEND REQUIREMENT
+
+Do NOT store the restaurant menu only inside frontend files.
+
+All menu data must be stored in MongoDB and fetched through the Node.js backend.
+
+MongoDB should contain:
+
+* categories
+* products
+* add-ons
+* orders
+* admin users if authentication is implemented
+
+The frontend must retrieve products/categories from backend APIs.
+
+---
+
+# SERVER-SIDE PRICE SECURITY
+
+Never trust product prices calculated or submitted by the browser.
+
+When a customer places an order:
+
+1. Send product IDs, add-on IDs and quantities to the Node.js server.
+2. Backend retrieves current product prices from MongoDB.
+3. Backend retrieves current add-on prices from MongoDB.
+4. Backend validates that each product is available.
+5. Backend recalculates the complete order total.
+6. Backend creates the final order.
+7. Backend stores product/add-on price snapshots in the order.
+
+Never allow customers to manipulate prices through frontend state.
+
+---
+
+# VISUAL DIRECTION
+
+Keep the exact same **layout proportions, hierarchy and design behaviour** as the supplied Munch & Crunch reference.
+
+However, use the existing **4B Foods visual identity** instead of Munch & Crunch branding.
+
+Use uploaded 4B assets consistently.
+
+Do not redesign the official logo.
+
+Keep the interface:
+
+* premium
+* modern
+* appetizing
+* spacious
+* easy to use
+* food-first
+* mobile-first
+
+Do not overcrowd the interface.
+
+---
+
+# HEADER
+
+Create the same sticky-header layout as the reference.
+
+Include:
+
+* 4B Foods logo
+* Delivery and Pick-up selector
+* Home
+* Menu
+* Featured
+* Contact
+* restaurant location
+* Search button
+* Cart icon with live quantity badge
+
+Location:
+
+**71-A Jail Road, Lahore**
+
+On mobile, use the same clean compact behaviour with:
+
+* logo
+* location
+* search
+* cart
+
+---
+
+# ANNOUNCEMENT BAR
+
+Add the same thin announcement bar above the navbar.
+
+Content:
+
+**Home Delivery Available | Call 0319 8429752**
+
+Opening hours have not been confirmed.
+
+Do NOT invent opening hours.
+
+If real business timings are supplied later, the announcement bar can display:
+
+**Open Daily: [TIMINGS] | Home Delivery Available | Call 0319 8429752**
+
+---
+
+# HERO PROMOTIONAL CAROUSEL
+
+Keep the exact same hero-carousel design and positioning as the supplied reference.
+
+Create a full-width promotional carousel directly below the header.
+
+Support:
+
+* 3 to 5 slides
+* autoplay
+* previous arrow
+* next arrow
+* pagination dots
+* touch swiping
+* pause on hover
+* clickable slides
+* responsive desktop/mobile image crops
+
+Use real uploaded 4B Foods imagery.
+
+Potential slides can feature:
+
+### Slide 1
+
+**TURKISH FLAVOURS
+THE 4B WAY**
+
+### Slide 2
+
+**DISCOVER OUR DONER**
+
+### Slide 3
+
+**SHAWARMA, WRAPS & MORE**
+
+### Slide 4
+
+**RICE BOWLS DONE RIGHT**
+
+### Slide 5
+
+Real promotional offer only if supplied by the restaurant
+
+Do not invent fake discounts or offers.
+
+---
+
+# ORDER TYPE AND LOCATION
+
+Allow visitor to select:
+
+**Delivery**
+
+**Pick-up**
+
+Display:
+
+**4B Foods**
+**71-A Jail Road, Lahore, Pakistan**
+
+Create the same small location/order confirmation modal shown in the reference website.
+
+Modal content:
+
+**Welcome to 4B Foods**
+
+**71-A Jail Road, Lahore**
+
+**How would you like to receive your order?**
+
+Buttons:
+
+**Delivery**
+
+**Pick-up**
+
+CTA:
+
+**Start Ordering**
+
+Save selected order type in application state/session.
+
+---
+
+# MENU INTRODUCTION
+
+Directly below the promotional hero, keep the same menu introduction structure.
+
+Heading:
+
+**What Are You Craving Today?**
+
+Subheading:
+
+**Explore doner, shawarma, wraps, rice bowls, hummus, falafel and more.**
+
+Add a functional search field:
+
+**Search menu items...**
+
+Search should filter products by:
+
+* product name
+* category
+* relevant terms
+
+Search must use menu data returned by the backend.
+
+---
+
+# STICKY SCROLLABLE CATEGORY NAVIGATION
+
+Create the same horizontally scrollable category bar as the reference.
+
+Include these categories:
+
+1. Doner Kebabs
+2. Turkish Shawarma
+3. Turkish Wraps
+4. Doner Box
+5. Rice Bowls
+6. Fattoush & Veggies
+7. Hummus
+8. Falafel
+9. Desserts
+
+Required behaviour:
+
+* sticky below the main header
+* click category → smooth scroll to section
+* active category updates automatically during manual scrolling
+* use IntersectionObserver for active category detection
+* automatically scroll category navigation so active tab stays visible
+* swipe-scrollable on mobile
+
+Preserve the same visual behaviour as the reference.
+
+---
+
+# CATEGORY BANNERS
+
+Above every category section, add one **wide panoramic category image/banner**.
+
+The banner must be:
+
+* full width of main menu container
+* short in height
+* horizontally wide
+* image-led
+* not a tall hero
+* responsive
+
+Suggested desktop height:
+
+**180–230px**
+
+Each banner must use imagery relevant to that category.
+
+Examples:
+
+Doner → Doner imagery
+Shawarma → Shawarma imagery
+Wraps → Wrap imagery
+Rice Bowls → Rice Bowl imagery
+Hummus → Hummus imagery
+Falafel → Falafel imagery
+Desserts → Baklava imagery
+
+IMPORTANT SEARCH RULE:
+
+When text search is active:
+
+**hide all category banners.**
+
+Search mode should show only matching products.
+
+When the search field becomes empty:
+
+restore category banners and normal category sections.
+
+---
+
+# MENU SECTIONS
+
+Display all menu products grouped underneath their correct categories.
+
+Each category section must include:
+
+* wide category banner
+* category title
+* optional short description
+* responsive product-card grid
+* clear spacing
+* unique section ID linked to category navigation
+
+---
+
+# INITIAL MENU DATA
+
+Seed MongoDB with the following 4B Foods menu.
+
+All prices are PKR.
+
+## DONER KEBABS
+
+**Beef Doner**
+Rs. 1,700
+
+**Chicken Doner**
+Rs. 1,140
+
+**Mix Doner**
+Rs. 1,390
+
+---
+
+## TURKISH SHAWARMA
+
+**Turkish Beef Shawarma**
+Rs. 1,150
+
+**Turkish Chicken Shawarma**
+Rs. 930
+
+**Turkish Mix Shawarma**
+Rs. 1,040
+
+---
+
+## TURKISH WRAPS
+
+**Beef Turkish Wrap**
+Rs. 1,295
+
+**Chicken Turkish Wrap**
+Rs. 930
+
+**Mix Turkish Wrap**
+Rs. 1,040
+
+---
+
+## DONER BOX
+
+**Beef Doner Box**
+Rs. 2,100
+
+**Chicken Doner Box**
+Rs. 1,160
+
+**Mix Doner Box**
+Rs. 1,740
+
+---
+
+## RICE BOWLS
+
+**Beef Rice Bowl**
+Rs. 1,040
+
+**Chicken Rice Bowl**
+Rs. 700
+
+**Mix Rice Bowl**
+Rs. 930
+
+---
+
+## FATTOUSH & VEGGIES
+
+**Fattoush Veggies**
+Rs. 690
+
+**Beef Fattoush Veggies**
+Rs. 1,160
+
+**Chicken Fattoush Veggies**
+Rs. 930
+
+**Mix Fattoush Veggies**
+Rs. 1,040
+
+---
+
+## HUMMUS
+
+**Hummus**
+Rs. 580
+
+**Beef Hummus**
+Rs. 1,040
+
+**Chicken Hummus**
+Rs. 810
+
+**Mix Hummus**
+Rs. 930
+
+---
+
+## FALAFEL
+
+**Falafel — 4 Pieces**
+Rs. 460
+
+**Falafel — 8 Pieces**
+Rs. 810
+
+**Falafel Doner**
+Rs. 930
+
+**Falafel Hummus**
+Rs. 810
+
+---
+
+## DESSERTS
+
+**Pistachio Baklava**
+Rs. 350
+
+**Walnut Baklava**
+Rs. 350
+
+**Baklava Combo**
+Rs. 460
+
+---
+
+# ADD-ONS
+
+Store add-ons in MongoDB separately.
+
+Seed:
+
+**Signature Sauce**
+Rs. 100
+
+**Tahini / Garlic Sauce**
+Rs. 100
+
+**Spicy Sauce**
+Rs. 100
+
+**Extra Bread**
+Rs. 100
+
+**Extra Chicken**
+Rs. 250
+
+**Extra Beef**
+Rs. 390
+
+**Extra Mix**
+Rs. 350
+
+**French Fries**
+Rs. 190
+
+Add-ons must be mapped to relevant products/categories.
+
+Do NOT automatically display every add-on for every item.
+
+---
+
+# PRODUCT CARDS
+
+Keep the exact same product-card structure and proportions as the reference.
+
+Each card displays:
+
+* product image
+* product name
+* short editable description
+* price
+* Featured / Popular badge only if real data supports it
+* Add to Cart button
+
+Use high-quality editable image placeholders where food photography is unavailable.
+
+Do not show browser broken-image icons.
+
+Use a proper fallback image.
+
+---
+
+# PRODUCT DESCRIPTIONS
+
+The supplied 4B menu does not provide full verified recipe descriptions.
+
+Therefore:
+
+* descriptions must remain editable
+* do not invent guaranteed ingredients
+* use minimal neutral placeholder descriptions if needed
+* restaurant should be able to update them later
+
+---
+
+# PRODUCT CUSTOMIZATION MODAL
+
+Clicking **Add to Cart** should open the same style of product customization modal as the reference.
+
+For 4B Foods, show:
+
+* product image
+* product name
+* price
+* applicable add-ons
+* quantity selector
+* special instructions
+* live calculated price
+* Add to Cart button
+
+Do not show pizza-size, wing-flavour or Munch & Crunch-specific options.
+
+Only show product options relevant to 4B products.
+
+Do not allow configurable products to be added until required selections are complete.
+
+---
+
+# CART
+
+Create the same professional cart behaviour as the reference.
+
+Desktop:
+
+**right-side drawer**
+
+Mobile:
+
+**bottom sheet or full-screen cart panel**
+
+Each item should show:
+
+* product name
+* selected add-ons
+* special instructions
+* quantity
+* unit price
+* item subtotal
+* edit
+* remove
+* increase quantity
+* decrease quantity
+
+Calculate:
+
+* subtotal
+* applicable delivery charge if configured
+* grand total
+
+Show floating cart summary after first product is added:
+
+**View Cart • [quantity] Items • Rs. [total]**
+
+Cart may be temporarily cached in localStorage for customer convenience, but **MongoDB remains the source for product/menu/order data**.
+
+---
+
+# CHECKOUT
+
+Create order type:
+
+**Delivery**
+
+**Pick-up**
+
+## DELIVERY
+
+Collect:
+
+* Customer Name
+* Phone Number
+* Complete Address
+* Nearby Landmark
+* Special Instructions
+
+## PICK-UP
+
+Collect:
+
+* Customer Name
+* Phone Number
+* Preferred Pick-up Time
+* Special Instructions
+
+Validate required fields before order placement.
+
+---
+
+# REAL DATABASE ORDER SYSTEM
+
+The primary checkout action should be:
+
+**PLACE ORDER**
+
+Do NOT make WhatsApp the only order-storage mechanism.
+
+When Place Order is clicked:
+
+1. Frontend sends order request to Node.js backend.
+2. Backend validates customer fields.
+3. Backend validates every product.
+4. Backend confirms availability.
+5. Backend fetches current product prices from MongoDB.
+6. Backend validates selected add-ons.
+7. Backend fetches current add-on prices.
+8. Backend recalculates final order total.
+9. Backend generates unique order number.
+10. Backend stores complete order in MongoDB.
+11. Initial status becomes **Pending**.
+12. Return confirmed order number to frontend.
+13. Clear cart after successful response.
+14. Redirect customer to Order Confirmation page.
+
+---
+
+# ORDER DATA MODEL
+
+Each order should contain:
+
+* orderNumber
+* orderType
+* customerName
+* phone
+* address
+* landmark
+* pickupTime
+* specialInstructions
+* items
+* item quantities
+* product price snapshots
+* selected add-ons
+* add-on price snapshots
+* subtotal
+* deliveryCharge
+* total
+* status
+* createdAt
+* updatedAt
+
+---
+
+# ORDER STATUS
+
+Support:
+
+* Pending
+* Confirmed
+* Preparing
+* Ready
+* Completed
+* Cancelled
+
+---
+
+# ORDER CONFIRMATION
+
+After successful order creation show:
+
+**ORDER RECEIVED**
+
+Include:
+
+* unique order number
+* customer details
+* ordered products
+* selected add-ons
+* quantities
+* subtotal
+* total
+* Delivery / Pick-up
+* current status
+
+Message:
+
+**Your order has been received and is awaiting restaurant confirmation.**
+
+---
+
+# OPTIONAL WHATSAPP ACTION
+
+After the order has already been successfully stored in MongoDB, an optional secondary button may be shown:
+
+**Send Order Summary on WhatsApp**
+
+WhatsApp number:
+
+**923198429752**
+
+This must be secondary.
+
+The database order must already exist before the WhatsApp action.
+
+Generate WhatsApp summary using actual saved order information.
+
+Do not use WhatsApp as the only method of creating an order.
+
+---
+
+# BACKEND API
+
+Create clean REST API routes such as:
+
+## Public
+
+**GET /api/categories**
+
+Return active menu categories.
+
+**GET /api/products**
+
+Return available products.
+
+**GET /api/products/:id**
+
+Return product detail.
+
+**GET /api/products?category=...**
+
+Filter products.
+
+**POST /api/orders**
+
+Create customer order.
+
+---
+
+# ADMIN / MANAGEMENT BACKEND
+
+Prepare secure backend APIs for the approved Admin Panel.
+
+Admin scope:
+
+* Dashboard
+* Products
+* Categories
+* Add-ons
+* Orders
+
+Admin should be able to:
+
+## PRODUCTS
+
+* create product
+* edit product
+* delete product
+* change price
+* change description
+* update image
+* activate/deactivate
+* assign category
+* assign add-ons
+* feature/unfeature
+* reorder
+
+## CATEGORIES
+
+* create
+* edit
+* reorder
+* enable/disable
+
+## ADD-ONS
+
+* create
+* edit
+* delete
+* change price
+* enable/disable
+* map to products/categories
+
+## ORDERS
+
+* view orders
+* view customer details
+* view selected products
+* view selected add-ons
+* view total
+* update order status
+
+---
+
+# ADMIN AUTHENTICATION
+
+Use secure admin authentication.
+
+Use:
+
+* hashed passwords
+* protected routes
+* secure sessions or JWT
+* backend authorization middleware
+
+Do not expose Admin CRUD APIs publicly.
+
+---
+
+# MONGODB COLLECTIONS
+
+Create:
+
+**admins**
+
+**categories**
+
+**products**
+
+**addons**
+
+**orders**
+
+Suggested relationships:
+
+Product:
+
+* categoryId
+* addonIds
+
+Order item:
+
+* productId
+* productNameSnapshot
+* unitPriceSnapshot
+* quantity
+* selectedAddons
+* itemTotal
+
+---
+
+# PROMOTIONAL SECTIONS
+
+Keep promotional section placement and layout exactly like the reference website.
+
+Use real 4B imagery.
+
+Do not interrupt ordering excessively.
+
+Do not invent offers.
+
+---
+
+# CONTACT SECTION
+
+Use:
+
+**4B Foods**
+
+**71-A Jail Road, Lahore, Pakistan**
+
+**Home Delivery Available**
+
+**Phone / WhatsApp: 0319 8429752**
+
+Buttons:
+
+**Call Now**
+
+**WhatsApp**
+
+**Get Directions**
+
+Use an editable Google Maps location/embed.
+
+Do not invent business hours.
+
+---
+
+# FOOTER
+
+Keep the same footer structure as the supplied reference.
+
+Include:
+
+* 4B Foods logo
+* menu category links
+* location
+* phone
+* WhatsApp
+* Delivery / Pick-up information
+* social links only when real URLs are supplied
+
+Do not invent opening hours.
+
+---
+
+# FUNCTIONAL REQUIREMENTS
+
+The website must be fully functional, not only a visual mockup.
+
+Required:
+
+* category tabs update automatically while scrolling
+* search works
+* Add to Cart works
+* product customization works
+* add-ons work
+* cart totals calculate correctly
+* cart items can be edited
+* quantity controls work
+* cart persists during browsing
+* checkout validation works
+* Node.js backend works
+* MongoDB integration works
+* menu loads from database
+* product prices load from database
+* server-side order validation works
+* orders are saved in MongoDB
+* unique order numbers are generated
+* order statuses work
+* all buttons and links work
+* mobile ordering works properly
+
+---
+
+# COMPONENT STRUCTURE
+
+Create clean reusable frontend components such as:
+
+* Header
+* PromoCarousel
+* OrderTypeSelector
+* CategoryNavigation
+* CategoryBanner
+* MenuSection
+* ProductCard
+* ProductModal
+* CartDrawer
+* FloatingCartBar
+* CheckoutForm
+* OrderConfirmation
+* Footer
+
+Backend structure should include:
+
+* server entry
+* database connection
+* models
+* controllers
+* routes
+* middleware
+* validation
+* authentication logic
+
+---
+
+# FINAL UI WARNING
+
+Do not alter the supplied Munch & Crunch-style UI structure.
+
+The goal is:
+
+**same UI layout + same placement + same ordering flow + same responsive behaviour**
+
+but with:
+
+**4B Foods branding + 4B Foods menu + 4B Foods number + 4B Foods location + Node.js/MongoDB backend.**
+
+Do NOT simplify the UI.
+
+Do NOT create a different navbar.
+
+Do NOT replace the hero carousel.
+
+Do NOT change the menu introduction/search/category navigation hierarchy.
+
+Do NOT redesign product cards into another layout.
+
+Do NOT alter the cart placement.
+
+Do NOT create a Jalal Sons-style UI.
+
+The supplied reference UI must remain the visual blueprint.
+
+Only the brand data, menu data, contact information and backend architecture should change.

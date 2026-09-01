@@ -1,0 +1,10 @@
+{
+  "description": "Easily remove backgrounds from logos to create clean, transparent images ideal for branding and professional design projects.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
