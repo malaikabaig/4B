@@ -2578,7 +2578,7 @@ function CategoryBanner({
   return (
     <div
       className="w-full rounded-xl overflow-hidden relative mb-5"
-      style={{ height: 180 }}
+      style={{ height: 'clamp(120px, 25vw, 180px)' }}
     >
       {photo ? (
         <img src={photo} alt={name} className="w-full h-full object-cover" />
@@ -2589,13 +2589,13 @@ function CategoryBanner({
         />
       )}
       <div
-        className="absolute inset-0 flex items-end p-4"
+        className="absolute inset-0 flex items-end p-3 sm:p-4"
         style={{
           background:
             'linear-gradient(to top, rgba(28,13,4,0.8) 0%, transparent 60%)',
         }}
       >
-        <h3 className="text-white font-black text-2xl">{name}</h3>
+        <h3 className="text-white font-black text-lg sm:text-2xl">{name}</h3>
       </div>
     </div>
   );
@@ -2708,7 +2708,10 @@ function ProductModal({
       />
       <div className="relative bg-white w-full sm:rounded-2xl sm:max-w-md max-h-[90vh] overflow-y-auto z-10">
         {/* Header image */}
-        <div className="relative h-48 w-full">
+        <div
+          className="relative w-full"
+          style={{ height: 'clamp(160px, 40vw, 192px)' }}
+        >
           <FoodPlaceholder categoryId={product.category} name={product.name} />
           <button
             onClick={onClose}
@@ -2717,11 +2720,16 @@ function ProductModal({
             ✕
           </button>
         </div>
-        <div className="p-5">
-          <h3 className="font-black text-xl mb-1" style={{ color: '#1C0D04' }}>
+        <div className="p-3 sm:p-5">
+          <h3
+            className="font-black text-lg sm:text-xl mb-1"
+            style={{ color: '#1C0D04' }}
+          >
             {product.name}
           </h3>
-          <p className="text-sm text-gray-500 mb-4">{product.description}</p>
+          <p className="text-xs sm:text-sm text-gray-500 mb-4">
+            {product.description}
+          </p>
 
           {/* Add-ons */}
           {availableAddons.length > 0 && (
@@ -2833,20 +2841,20 @@ function FloatingCartBar({
   const total = items.reduce((s, i) => s + i.itemTotal, 0);
   if (count === 0) return null;
   return (
-    <div className="fixed bottom-5 left-1/2 -translate-x-1/2 z-30 px-3">
+    <div className="fixed bottom-5 left-1/2 -translate-x-1/2 z-30 px-2 sm:px-3 w-[calc(100%-16px)] max-w-xs">
       <button
         onClick={onOpenCart}
-        className="flex items-center gap-3 px-5 py-3 rounded-full shadow-xl font-bold text-sm transition-transform hover:scale-105"
-        style={{ background: '#1C0D04', color: '#C9A84C', minWidth: 220 }}
+        className="flex items-center gap-2 sm:gap-3 px-3 sm:px-5 py-3 rounded-full shadow-xl font-bold text-xs sm:text-sm transition-transform hover:scale-105 w-full"
+        style={{ background: '#1C0D04', color: '#C9A84C' }}
       >
         <span
-          className="flex items-center justify-center w-7 h-7 rounded-full text-xs font-black"
+          className="flex items-center justify-center w-6 h-6 sm:w-7 sm:h-7 rounded-full text-xs font-black flex-shrink-0"
           style={{ background: '#C9A84C', color: '#1C0D04' }}
         >
           {count}
         </span>
-        <span className="flex-1 text-center">View Cart</span>
-        <span>Rs. {total.toLocaleString()}</span>
+        <span className="flex-1 text-center truncate">View Cart</span>
+        <span className="truncate">Rs. {total.toLocaleString()}</span>
       </button>
     </div>
   );
@@ -2912,20 +2920,20 @@ function FeaturedSection({
   return (
     <section
       id="featured"
-      className="py-12 px-4"
+      className="py-8 sm:py-12 px-3 sm:px-4"
       style={{ background: '#1C0D04' }}
     >
       <div className="max-w-7xl mx-auto">
         <h2
-          className="font-black text-2xl md:text-3xl mb-1"
+          className="font-black text-xl sm:text-2xl md:text-3xl mb-1"
           style={{ color: '#C9A84C' }}
         >
           Customer Favourites
         </h2>
-        <p className="text-white/50 text-sm mb-6">
+        <p className="text-white/50 text-xs sm:text-sm mb-4 sm:mb-6">
           Most loved dishes at 4B Foods
         </p>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
           {featured.map((p) => (
             <ProductCard key={p.id} product={p} onAddToCart={onAddToCart} />
           ))}
@@ -2940,24 +2948,31 @@ function ContactSection() {
   return (
     <section
       id="contact"
-      className="py-14 px-4"
+      className="py-8 sm:py-14 px-3 sm:px-4"
       style={{ background: '#F9F5EF' }}
     >
-      <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 items-center">
+      <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-6 sm:gap-10 items-start md:items-center">
         <div>
-          <Logo size={72} className="mb-5" />
-          <h2 className="font-black text-3xl mb-2" style={{ color: '#1C0D04' }}>
+          <Logo size={60} className="mb-3 sm:mb-5" />
+          <h2
+            className="font-black text-2xl sm:text-3xl mb-2"
+            style={{ color: '#1C0D04' }}
+          >
             4B Foods
           </h2>
-          <p className="text-gray-500 mb-1">
+          <p className="text-xs sm:text-sm text-gray-500 mb-1">
             🏠 71-A Jail Road, Lahore, Pakistan
           </p>
-          <p className="text-gray-500 mb-1">📞 0319 8429752</p>
-          <p className="text-gray-500 mb-6">🚚 Home Delivery Available</p>
-          <div className="flex flex-wrap gap-3">
+          <p className="text-xs sm:text-sm text-gray-500 mb-1">
+            📞 0319 8429752
+          </p>
+          <p className="text-xs sm:text-sm text-gray-500 mb-4 sm:mb-6">
+            🚚 Home Delivery Available
+          </p>
+          <div className="flex flex-col sm:flex-row flex-wrap gap-2 sm:gap-3">
             <a
               href="tel:03198429752"
-              className="px-5 py-2 rounded-full font-bold text-sm transition-opacity hover:opacity-80"
+              className="px-4 sm:px-5 py-2 rounded-full font-bold text-xs sm:text-sm transition-opacity hover:opacity-80 text-center"
               style={{ background: '#1C0D04', color: '#C9A84C' }}
             >
               📞 Call Now
@@ -2966,7 +2981,7 @@ function ContactSection() {
               href="https://wa.me/923198429752"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-5 py-2 rounded-full font-bold text-sm transition-opacity hover:opacity-80"
+              className="px-4 sm:px-5 py-2 rounded-full font-bold text-xs sm:text-sm transition-opacity hover:opacity-80 text-center"
               style={{ background: '#25D366', color: 'white' }}
             >
               💬 WhatsApp
@@ -3112,7 +3127,7 @@ function PageHero({
   return (
     <div
       className="relative w-full overflow-hidden"
-      style={{ height: 220, background: '#1C0D04' }}
+      style={{ height: 'clamp(160px, 40vw, 220px)', background: '#1C0D04' }}
     >
       {image && (
         <img
@@ -3121,15 +3136,15 @@ function PageHero({
           className="w-full h-full object-cover opacity-40"
         />
       )}
-      <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4">
+      <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-3 sm:px-4">
         <h1
           className="font-black text-white mb-2"
-          style={{ fontSize: 'clamp(1.75rem, 4vw, 2.75rem)' }}
+          style={{ fontSize: 'clamp(1.5rem, 4vw, 2.75rem)' }}
         >
           {title}
         </h1>
         <p
-          className="text-sm md:text-base font-medium"
+          className="text-xs sm:text-sm md:text-base font-medium px-2"
           style={{ color: '#C9A84C' }}
         >
           {subtitle}
@@ -3308,26 +3323,26 @@ function VisitPage() {
         image={restaurantImg3}
       />
 
-      <section className="max-w-6xl mx-auto px-4 py-14">
-        <div className="grid lg:grid-cols-2 gap-8 mb-10">
+      <section className="max-w-6xl mx-auto px-3 sm:px-4 py-8 sm:py-14">
+        <div className="grid lg:grid-cols-2 gap-4 sm:gap-8 mb-8 sm:mb-10">
           {/* Info column */}
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-3 sm:gap-4">
             {/* Address */}
-            <div className="bg-white rounded-2xl p-6 shadow-sm">
+            <div className="bg-white rounded-2xl p-4 sm:p-6 shadow-sm">
               <h3
-                className="font-bold text-base mb-2 flex items-center gap-2"
+                className="font-bold text-sm sm:text-base mb-2 flex items-center gap-2"
                 style={{ color: '#1C0D04' }}
               >
                 📍 Our Location
               </h3>
-              <p className="text-sm text-gray-600 mb-4">
+              <p className="text-xs sm:text-sm text-gray-600 mb-3 sm:mb-4">
                 {RESTAURANT_INFO.address}
               </p>
               <a
                 href={RESTAURANT_INFO.mapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block px-5 py-2 rounded-full font-bold text-sm transition-opacity hover:opacity-90"
+                className="inline-block px-4 sm:px-5 py-2 rounded-full font-bold text-xs sm:text-sm transition-opacity hover:opacity-90"
                 style={{ background: '#1C0D04', color: '#C9A84C' }}
               >
                 🧭 Get Directions
@@ -3335,18 +3350,18 @@ function VisitPage() {
             </div>
 
             {/* Hours */}
-            <div className="bg-white rounded-2xl p-6 shadow-sm">
+            <div className="bg-white rounded-2xl p-4 sm:p-6 shadow-sm">
               <h3
-                className="font-bold text-base mb-3 flex items-center gap-2"
+                className="font-bold text-sm sm:text-base mb-2 sm:mb-3 flex items-center gap-2"
                 style={{ color: '#1C0D04' }}
               >
                 🕐 Opening Hours
               </h3>
-              <div className="flex flex-col gap-2">
+              <div className="flex flex-col gap-1 sm:gap-2">
                 {RESTAURANT_INFO.hours.map((h) => (
                   <div
                     key={h.days}
-                    className="flex justify-between text-sm border-b pb-2 last:border-0"
+                    className="flex justify-between text-xs sm:text-sm border-b pb-1 sm:pb-2 last:border-0"
                     style={{ borderColor: '#E8DDD0' }}
                   >
                     <span className="text-gray-500">{h.days}</span>
@@ -3362,20 +3377,20 @@ function VisitPage() {
             </div>
 
             {/* Phone */}
-            <div className="bg-white rounded-2xl p-6 shadow-sm">
+            <div className="bg-white rounded-2xl p-4 sm:p-6 shadow-sm">
               <h3
-                className="font-bold text-base mb-2 flex items-center gap-2"
+                className="font-bold text-sm sm:text-base mb-2 flex items-center gap-2"
                 style={{ color: '#1C0D04' }}
               >
                 📞 Call to Order
               </h3>
-              <p className="text-sm text-gray-600 mb-4">
+              <p className="text-xs sm:text-sm text-gray-600 mb-3 sm:mb-4">
                 Phone orders and table reservations are welcome.
               </p>
-              <div className="flex flex-wrap gap-3">
+              <div className="flex flex-col sm:flex-row flex-wrap gap-2 sm:gap-3">
                 <a
                   href={RESTAURANT_INFO.phoneHref}
-                  className="px-5 py-2 rounded-full font-bold text-sm transition-opacity hover:opacity-90"
+                  className="px-3 sm:px-5 py-2 rounded-full font-bold text-xs sm:text-sm transition-opacity hover:opacity-90 text-center"
                   style={{ background: '#1C0D04', color: '#C9A84C' }}
                 >
                   📞 {RESTAURANT_INFO.phone}
@@ -3384,7 +3399,7 @@ function VisitPage() {
                   href={RESTAURANT_INFO.whatsapp}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-5 py-2 rounded-full font-bold text-sm transition-opacity hover:opacity-90"
+                  className="px-3 sm:px-5 py-2 rounded-full font-bold text-xs sm:text-sm transition-opacity hover:opacity-90 text-center"
                   style={{ background: '#25D366', color: 'white' }}
                 >
                   💬 WhatsApp
@@ -3393,27 +3408,27 @@ function VisitPage() {
             </div>
 
             {/* Delivery & pickup */}
-            <div className="grid sm:grid-cols-2 gap-4">
-              <div className="bg-white rounded-2xl p-6 shadow-sm">
+            <div className="grid sm:grid-cols-2 gap-3 sm:gap-4">
+              <div className="bg-white rounded-2xl p-4 sm:p-6 shadow-sm">
                 <h3
-                  className="font-bold text-base mb-2"
+                  className="font-bold text-sm sm:text-base mb-2"
                   style={{ color: '#1C0D04' }}
                 >
                   🚚 Delivery Area
                 </h3>
-                <p className="text-sm text-gray-600 leading-relaxed">
+                <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
                   We deliver to {RESTAURANT_INFO.deliveryAreas}. Delivery charge
                   Rs. 100 per order.
                 </p>
               </div>
-              <div className="bg-white rounded-2xl p-6 shadow-sm">
+              <div className="bg-white rounded-2xl p-4 sm:p-6 shadow-sm">
                 <h3
-                  className="font-bold text-base mb-2"
+                  className="font-bold text-sm sm:text-base mb-2"
                   style={{ color: '#1C0D04' }}
                 >
                   🏃 Pick-Up
                 </h3>
-                <p className="text-sm text-gray-600 leading-relaxed">
+                <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
                   Order online or by phone and pick up at the counter — your
                   food is usually ready in 15–20 minutes.
                 </p>
@@ -3422,29 +3437,32 @@ function VisitPage() {
           </div>
 
           {/* Map column */}
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-3 sm:gap-4">
             <div
               className="rounded-2xl overflow-hidden shadow-md flex-1"
-              style={{ minHeight: 320, background: '#E8DDD0' }}
+              style={{
+                minHeight: 'clamp(200px, 50vw, 320px)',
+                background: '#E8DDD0',
+              }}
             >
               <iframe
                 title="4B Foods Location Map"
                 width="100%"
                 height="100%"
-                style={{ border: 0, minHeight: 320 }}
+                style={{ border: 0, minHeight: 'clamp(200px, 50vw, 320px)' }}
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
                 src={RESTAURANT_INFO.mapsEmbed}
               />
             </div>
-            <div className="grid grid-cols-3 gap-3">
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3">
               {[restaurantImg1, restaurantImg5, restaurantImg7].map(
                 (img, i) => (
                   <img
                     key={i}
                     src={img}
                     alt={`4B Foods restaurant photo ${i + 1}`}
-                    className="rounded-xl object-cover w-full h-28 shadow-sm"
+                    className="rounded-xl object-cover w-full aspect-square shadow-sm"
                   />
                 ),
               )}
@@ -4450,7 +4468,7 @@ export default function App() {
                   &rdquo;
                 </p>
                 {filteredProducts.length > 0 ? (
-                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
                     {filteredProducts.map((p) => (
                       <ProductCard
                         key={p.id}
@@ -4481,7 +4499,7 @@ export default function App() {
                     return (
                       <section key={cat.id} id={`section-${cat.slug}`}>
                         <CategoryBanner categoryId={cat.id} name={cat.name} />
-                        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
                           {categoryProducts.map((p) => (
                             <ProductCard
                               key={p.id}

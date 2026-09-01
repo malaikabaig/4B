@@ -1,1 +1,11 @@
 @import 'tailwindcss';
+
+/* Guard against any element that briefly renders wider than the viewport
+   (e.g. an image before it's sized, or a modal open/close transition) —
+   without this, mobile browsers add a horizontal scrollbar and a thin
+   sliver of the page background peeks out on the right edge. */
+html,
+body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
