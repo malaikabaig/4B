@@ -1,17 +1,14 @@
 {
   "version": 2,
-  "buildCommand": "npm run build && npm run build --prefix backend",
+  "buildCommand": "npm run build",
   "installCommand": "npm install && npm install --prefix backend",
-  "env": {
-    "NODE_ENV": "production"
-  },
   "builds": [
     {
       "src": "backend/api/index.ts",
       "use": "@vercel/node"
     },
     {
-      "src": "index.html",
+      "src": "package.json",
       "use": "@vercel/static-build",
       "config": {
         "distDir": "dist"
@@ -30,10 +27,9 @@
     {
       "src": "/(.*\\.[a-zA-Z0-9]+)$",
       "dest": "/dist/$1"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/dist/index.html"
     }
-  ]
+  ],
+  "env": {
+    "NODE_ENV": "production"
+  }
 }
