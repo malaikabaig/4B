@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "buildCommand": "npm run build",
+  "buildCommand": "npm run build && npm run build --prefix backend",
   "installCommand": "npm install && npm install --prefix backend",
   "builds": [
     {
@@ -27,6 +27,10 @@
     {
       "src": "/(.*\\.[a-zA-Z0-9]+)$",
       "dest": "/dist/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/dist/index.html"
     }
   ],
   "env": {
