@@ -1,12 +1,8 @@
 import type { Addon, Category, Product } from '../types';
 
-const API_URL = import.meta.env.VITE_API_URL;
-
-if (!API_URL) {
-  throw new Error(
-    'VITE_API_URL is missing. Put VITE_API_URL=http://localhost:5000/api in the project-root .env file.',
-  );
-}
+const API_URL =
+  import.meta.env.VITE_API_URL ||
+  (import.meta.env.PROD ? '/api' : 'http://localhost:5000/api');
 
 type ApiResponse<T> = {
   success: boolean;

@@ -1,7 +1,9 @@
 import { useState, useEffect, useCallback } from 'react';
 import logoImg from '../imports/WhatsApp_Image_2026-08-11_at_11.55.15_PM.jpeg';
 
-const API = 'http://localhost:5000/api';
+const API =
+  import.meta.env.VITE_API_URL ||
+  (import.meta.env.PROD ? '/api' : 'http://localhost:5000/api');
 
 // ─── helpers ─────────────────────────────────────────────────────────────────
 function token() {
