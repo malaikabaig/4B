@@ -1941,12 +1941,14 @@ const CATEGORY_IMAGES: Record<string, string> = {
 function FoodPlaceholder({
   categoryId,
   name,
+  customImage,
 }: {
   categoryId: string;
   name: string;
+  customImage?: string;
 }) {
   const color = CATEGORY_COLORS[categoryId] || '#7B3F00';
-  const image = CATEGORY_IMAGES[categoryId];
+  const image = customImage || CATEGORY_IMAGES[categoryId];
   return (
     <div
       className="w-full h-full relative overflow-hidden"
@@ -2612,7 +2614,11 @@ function ProductCard({
   return (
     <div className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow flex flex-col">
       <div className="relative h-40">
-        <FoodPlaceholder categoryId={product.category} name={product.name} />
+        <FoodPlaceholder
+          categoryId={product.category}
+          name={product.name}
+          customImage={product.image}
+        />
         {product.featured && (
           <span
             className="absolute top-2 left-2 px-2 py-0.5 rounded-full text-xs font-bold"
@@ -2712,7 +2718,11 @@ function ProductModal({
           className="relative w-full"
           style={{ height: 'clamp(160px, 40vw, 192px)' }}
         >
-          <FoodPlaceholder categoryId={product.category} name={product.name} />
+          <FoodPlaceholder
+            categoryId={product.category}
+            name={product.name}
+            customImage={product.image}
+          />
           <button
             onClick={onClose}
             className="absolute top-3 right-3 w-8 h-8 rounded-full bg-black/50 text-white flex items-center justify-center text-sm hover:bg-black/70"
@@ -3703,6 +3713,7 @@ function CartPage({
                     <FoodPlaceholder
                       categoryId={item.product.category}
                       name=""
+                      customImage={item.product.image}
                     />
                   </div>
                   <div className="flex-1 min-w-0">
@@ -4261,6 +4272,7 @@ export default function App() {
   }, []);
 
   useEffect(() => {
+    document.title = '4B Foods - Premium Middle Eastern & Turkish Street Food';
     const onHashChange = () => {
       setPage(parseHash());
       window.scrollTo({ top: 0 });

@@ -3,10 +3,15 @@ import { Order } from "../models/Order"
 import { Product } from "../models/Product"
 import { Addon } from "../models/Addon"
 
-function generateOrderNumber(): string {
-  const ts = Date.now().toString().slice(-6)
-  const rand = Math.floor(Math.random() * 900 + 100)
-  return `4B${ts}${rand}`
+import { Counter } from "../models/Counter"
+
+async function getNextOrderNumber(): Promise<string> {
+  const counter = await Counter.findByIdAndUpdate(
+    "orderNumber",
+    { $inc: { seq: 1 } },
+    { new: true, upsert: true, setDefaultsOnInsert: true }
+  )
+  return String(counter.seq)
 }
 
 // PUBLIC — place order
@@ -79,8 +84,10 @@ export async function createOrder(req: Request, res: Response): Promise<void> {
   const deliveryCharge = orderType === "delivery" ? 100 : 0
   const total = subtotal + deliveryCharge
 
+  const orderNumber = await getNextOrderNumber()
+
   const order = await Order.create({
-    orderNumber: generateOrderNumber(),
+    orderNumber,
     orderType,
     customerName,
     phone,

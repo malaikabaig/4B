@@ -52,6 +52,46 @@ interface Product {
   isPopular: boolean;
   category: { name: string } | string;
   description: string;
+  image?: string;
+}
+
+function compressImage(file: File): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const img = new Image();
+      img.onload = () => {
+        const MAX = 800;
+        let w = img.width;
+        let h = img.height;
+        if (w > h) {
+          if (w > MAX) {
+            h = Math.round((h * MAX) / w);
+            w = MAX;
+          }
+        } else {
+          if (h > MAX) {
+            w = Math.round((w * MAX) / h);
+            h = MAX;
+          }
+        }
+        const canvas = document.createElement('canvas');
+        canvas.width = w;
+        canvas.height = h;
+        const ctx = canvas.getContext('2d');
+        if (!ctx) {
+          resolve(e.target?.result as string);
+          return;
+        }
+        ctx.drawImage(img, 0, 0, w, h);
+        resolve(canvas.toDataURL('image/jpeg', 0.82));
+      };
+      img.onerror = () => reject(new Error('Failed to load image'));
+      img.src = e.target?.result as string;
+    };
+    reader.onerror = (err) => reject(err);
+    reader.readAsDataURL(file);
+  });
 }
 interface Category {
   _id: string;
@@ -609,6 +649,7 @@ function Products() {
       isAvailable: editing.isAvailable,
       isFeatured: editing.isFeatured,
       isPopular: editing.isPopular,
+      image: editing.image ?? '',
     };
     if (isNew)
       await apiFetch('/products', {
@@ -651,6 +692,7 @@ function Products() {
               isAvailable: true,
               isFeatured: false,
               isPopular: false,
+              image: '',
             })
           }
           className="px-4 py-2 rounded-xl text-sm font-bold"
@@ -663,6 +705,7 @@ function Products() {
         <table className="w-full text-sm">
           <thead style={{ background: '#F9F5EF' }}>
             <tr className="text-xs text-gray-400">
+              <th className="text-left p-3">Photo</th>
               <th className="text-left p-3">Name</th>
               <th className="text-left p-3">Category</th>
               <th className="text-left p-3">Price</th>
@@ -679,6 +722,23 @@ function Products() {
                 className="border-t"
                 style={{ borderColor: '#F9F5EF' }}
               >
+                <td className="p-3">
+                  {p.image ? (
+                    <img
+                      src={p.image}
+                      alt={p.name}
+                      className="w-12 h-12 rounded-xl object-cover border"
+                      style={{ borderColor: '#E8DDD0' }}
+                    />
+                  ) : (
+                    <div
+                      className="w-12 h-12 rounded-xl flex items-center justify-center text-[10px] text-gray-400 border border-dashed"
+                      style={{ borderColor: '#E8DDD0', background: '#F9F5EF' }}
+                    >
+                      No img
+                    </div>
+                  )}
+                </td>
                 <td className="p-3 font-semibold">{p.name}</td>
                 <td className="p-3 text-gray-500">
                   {typeof p.category === 'object'
@@ -732,6 +792,98 @@ function Products() {
           onClose={() => setEditing(null)}
         >
           <div className="flex flex-col gap-3">
+            <div>
+              <label className="block text-xs font-semibold text-gray-500 mb-1">
+                Item Photo
+              </label>
+              {editing.image ? (
+                <div
+                  className="flex items-center gap-3 p-3 rounded-xl border"
+                  style={{ borderColor: '#E8DDD0', background: '#FDFBF8' }}
+                >
+                  <img
+                    src={editing.image}
+                    alt="Preview"
+                    className="w-16 h-16 rounded-xl object-cover border flex-shrink-0"
+                    style={{ borderColor: '#E8DDD0' }}
+                  />
+                  <div className="flex flex-col gap-1.5 flex-1 min-w-0">
+                    <p className="text-xs text-green-700 font-semibold flex items-center gap-1">
+                      <span>✓</span> Photo selected
+                    </p>
+                    <div className="flex gap-2">
+                      <label
+                        className="px-3 py-1.5 rounded-lg text-xs font-bold cursor-pointer transition-opacity hover:opacity-80 inline-block text-center"
+                        style={{ background: '#1C0D04', color: '#C9A84C' }}
+                      >
+                        Change Photo
+                        <input
+                          type="file"
+                          accept="image/*"
+                          className="hidden"
+                          onChange={async (e) => {
+                            const file = e.target.files?.[0];
+                            if (file) {
+                              const b64 = await compressImage(file);
+                              setEditing((prev) => ({ ...prev!, image: b64 }));
+                            }
+                          }}
+                        />
+                      </label>
+                      <button
+                        type="button"
+                        onClick={() =>
+                          setEditing((prev) => ({ ...prev!, image: '' }))
+                        }
+                        className="px-3 py-1.5 rounded-lg text-xs font-semibold bg-red-100 text-red-600 hover:bg-red-200 transition-colors"
+                      >
+                        Remove
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <label
+                  className="flex flex-col items-center justify-center p-5 rounded-xl border-2 border-dashed cursor-pointer hover:bg-amber-50/50 transition-colors"
+                  style={{ borderColor: '#C9A84C', background: '#FDFBF8' }}
+                >
+                  <span className="text-2xl mb-1">📸</span>
+                  <span
+                    className="text-xs font-bold"
+                    style={{ color: '#1C0D04' }}
+                  >
+                    Click to upload food photo
+                  </span>
+                  <span className="text-[11px] text-gray-400 mt-0.5">
+                    JPG, PNG, or WebP from your device
+                  </span>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    className="hidden"
+                    onChange={async (e) => {
+                      const file = e.target.files?.[0];
+                      if (file) {
+                        const b64 = await compressImage(file);
+                        setEditing((prev) => ({ ...prev!, image: b64 }));
+                      }
+                    }}
+                  />
+                </label>
+              )}
+              <div className="mt-2">
+                <input
+                  type="text"
+                  placeholder="Or paste image URL here..."
+                  value={editing.image ?? ''}
+                  onChange={(e) =>
+                    setEditing((prev) => ({ ...prev!, image: e.target.value }))
+                  }
+                  className="w-full border rounded-xl px-3 py-2 text-xs outline-none focus:border-amber-400"
+                  style={{ borderColor: '#E8DDD0' }}
+                />
+              </div>
+            </div>
             <Field
               label="Name"
               value={editing.name ?? ''}
@@ -1229,6 +1381,10 @@ function Modal({
 export default function AdminApp() {
   const [tok, setTok] = useState(localStorage.getItem('4b_admin_token') ?? '');
   const [page, setPage] = useState('dashboard');
+
+  useEffect(() => {
+    document.title = '4B Foods - Admin Portal';
+  }, []);
 
   const handleLogin = (t: string) => {
     localStorage.setItem('4b_admin_token', t);

@@ -1,7 +1,14 @@
 {
-  "description": "Easily remove backgrounds from logos to create clean, transparent images ideal for branding and professional design projects.",
+  "title": "4B Foods - Premium Middle Eastern & Turkish Street Food",
+  "description": "Authentic Middle Eastern & Turkish Street Food. Fresh Shawarma, Doner Kebabs, Pide, Rice Bowls, and Platters made with premium ingredients.",
+  "icons": {
+    "icon": "/logo.jpeg"
+  },
+  "openGraph": {
+    "image": "/logo.jpeg"
+  },
   "robots": {
-    "index": false
+    "index": true
   },
   "accessibility": {
     "addBypassLinks": false,
