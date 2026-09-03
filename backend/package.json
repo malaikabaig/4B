@@ -2,11 +2,11 @@
   "name": "4b-foods-backend",
   "version": "1.0.0",
   "description": "4B Foods REST API — Node.js + Express + MongoDB",
-  "main": "dist/server.js",
+  "main": "dist/src/server.js",
   "scripts": {
     "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
     "build": "tsc",
-    "start": "node dist/server.js",
+    "start": "node dist/src/server.js",
     "seed": "ts-node src/seed/seed.ts"
   },
   "dependencies": {
